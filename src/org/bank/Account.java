@@ -22,11 +22,11 @@ public class Account {
 
     // Getters and Setters
     public String getAccountNumber() {
-        return "Your account number is: " + accountNumber;
+        return accountNumber;
     }
 
     public String getHolderName() {
-        return "The account holder's name is: " + holderName;
+        return holderName;
     }
 
     public void setHolderName(String holderName) {
@@ -34,7 +34,7 @@ public class Account {
     }
 
     public String getBalance() {
-        return "Your current balance is: " + balance + "€";
+        return String.format("%.2f", balance) + "€";
     }
 
     // To String
@@ -43,22 +43,24 @@ public class Account {
         return "Account{" +
                 "Account Number='" + accountNumber + '\'' +
                 ", Holder Name='" + holderName + '\'' +
-                ", Balance=" + balance + "€" +
+                ", Balance=" + String.format("%.2f", balance) + "€" +
                 '}';
     }
 
     // Other methods
-    public void deposit(int amount) {
-        balance = balance.add(BigDecimal.valueOf(amount));
-        System.out.println("Money deposited successfully!");
+    public void deposit(String amount) {
+        BigDecimal bigDecimalAmount = new BigDecimal(amount);
+        balance = balance.add(bigDecimalAmount);
+        System.out.println("Money deposited successfully! Your current balance is: " + getBalance());
     }
 
-    public void withdraw(int amount) {
-        if (balance.subtract(BigDecimal.valueOf(amount)).compareTo(BigDecimal.ZERO) >= 0) {
-            balance = balance.subtract(BigDecimal.valueOf(amount));
-            System.out.println("Money withdrawn successfully!");
+    public void withdraw(String amount) {
+        BigDecimal bigDecimalAmount = new BigDecimal(amount);
+        if (balance.subtract(bigDecimalAmount).compareTo(BigDecimal.ZERO) >= 0) {
+            balance = balance.subtract(bigDecimalAmount);
+            System.out.println("Money withdrawn successfully! Your current balance is: "  + getBalance());
         } else {
-            System.out.println("Insufficient funds. Please check your account balance or try a smaller amount.");
+            System.out.println("Insufficient funds. Your current balance is: " + getBalance());
         }
     }
 }
