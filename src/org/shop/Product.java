@@ -13,15 +13,15 @@ public class Product {
 
     // CONSTRUCTORS
 
-    public Product(String name, String description, BigDecimal price, BigDecimal vat) {
+    public Product(String name, String description, String price, String vat) {
         // Create instance of Random class
         Random rand = new Random();
 
         this.code = rand.nextInt(999999);
         this.name = name;
         this.description = description;
-        this.price = price;
-        this.vat = vat;
+        this.price = new BigDecimal(price);
+        this.vat = new BigDecimal(vat);
     }
 
     // METHODS
@@ -59,16 +59,16 @@ public class Product {
         return price.multiply(vat).add(price);
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPrice(String price) {
+        this.price = new BigDecimal(price);
     }
 
     public BigDecimal getVat() {
         return vat;
     }
 
-    public void setVat(BigDecimal vat) {
-        this.vat = vat;
+    public void setVat(String vat) {
+        this.vat = new BigDecimal(vat);
     }
 
     // To String
