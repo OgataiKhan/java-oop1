@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.Random;
 
 public class Product {
+
     // ATTRIBUTES
+
     private int code;
     private String name;
     private String description;
