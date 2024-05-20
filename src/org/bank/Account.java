@@ -50,17 +50,25 @@ public class Account {
     // Other methods
     public void deposit(String amount) {
         BigDecimal bigDecimalAmount = new BigDecimal(amount);
-        balance = balance.add(bigDecimalAmount);
-        System.out.println("Money deposited successfully! Your current balance is: " + getBalance());
+        if (bigDecimalAmount.compareTo(BigDecimal.ZERO) >= 0) {
+            balance = balance.add(bigDecimalAmount);
+            System.out.println("Money deposited successfully! Your current balance is: " + getBalance());
+        } else {
+            System.out.println("Please enter a valid amount.");
+        }
     }
 
     public void withdraw(String amount) {
         BigDecimal bigDecimalAmount = new BigDecimal(amount);
-        if (balance.subtract(bigDecimalAmount).compareTo(BigDecimal.ZERO) >= 0) {
-            balance = balance.subtract(bigDecimalAmount);
-            System.out.println("Money withdrawn successfully! Your current balance is: "  + getBalance());
+        if (bigDecimalAmount.compareTo(BigDecimal.ZERO) >= 0) {
+            if (balance.subtract(bigDecimalAmount).compareTo(BigDecimal.ZERO) >= 0) {
+                balance = balance.subtract(bigDecimalAmount);
+                System.out.println("Money withdrawn successfully! Your current balance is: " + getBalance());
+            } else {
+                System.out.println("Insufficient funds. Your current balance is: " + getBalance());
+            }
         } else {
-            System.out.println("Insufficient funds. Your current balance is: " + getBalance());
+            System.out.println("Please enter a valid amount.");
         }
     }
 }

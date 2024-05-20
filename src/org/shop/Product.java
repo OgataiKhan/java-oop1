@@ -19,7 +19,7 @@ public class Product {
         // Create instance of Random class
         Random rand = new Random();
 
-        this.code = rand.nextInt(999999);
+        this.code = rand.nextInt(1000000);
         this.name = name;
         this.description = description;
         this.price = new BigDecimal(price);
