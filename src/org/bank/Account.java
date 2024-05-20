@@ -13,7 +13,7 @@ public class Account {
 
     public Account(String accountNumber, String holderName) {
         this.accountNumber = accountNumber;
-        this.holderName = holderName;
+        this.holderName = handleName(holderName);
         this.balance = new BigDecimal(0);
     }
 
@@ -30,7 +30,7 @@ public class Account {
     }
 
     public void setHolderName(String holderName) {
-        this.holderName = holderName;
+        this.holderName = handleName(holderName);
     }
 
     public String getBalance() {
@@ -48,6 +48,14 @@ public class Account {
     }
 
     // Other methods
+    private String handleName(String holderName){
+        if (!holderName.isEmpty()){
+            return holderName;
+        } else {
+            return "User";
+        }
+    }
+
     public void deposit(String amount) {
         BigDecimal bigDecimalAmount = new BigDecimal(amount);
         if (bigDecimalAmount.compareTo(BigDecimal.ZERO) >= 0) {
