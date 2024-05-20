@@ -57,7 +57,7 @@ public class Account {
     }
 
     public void deposit(String amount) {
-        BigDecimal bigDecimalAmount = new BigDecimal(amount);
+        BigDecimal bigDecimalAmount = new BigDecimal(!amount.isEmpty() ? amount : "0");
         if (bigDecimalAmount.compareTo(BigDecimal.ZERO) >= 0) {
             balance = balance.add(bigDecimalAmount);
             System.out.println("Money deposited successfully! Your current balance is: " + getBalance());
@@ -67,7 +67,7 @@ public class Account {
     }
 
     public void withdraw(String amount) {
-        BigDecimal bigDecimalAmount = new BigDecimal(amount);
+        BigDecimal bigDecimalAmount = new BigDecimal(!amount.isEmpty() ? amount : "0");
         if (bigDecimalAmount.compareTo(BigDecimal.ZERO) >= 0) {
             if (balance.subtract(bigDecimalAmount).compareTo(BigDecimal.ZERO) >= 0) {
                 balance = balance.subtract(bigDecimalAmount);
